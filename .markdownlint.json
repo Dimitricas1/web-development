@@ -3,7 +3,8 @@
         "allowed_elements": [
             "center",
             "p",
-            "h*"
+            "h1",
+            "h2"
         ]
     }
 }
