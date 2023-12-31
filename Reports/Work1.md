@@ -1,4 +1,4 @@
-# <center> Отчёт по работе №1 </center>
+<h1 align=center>Отчёт по работе №1</h1>
 
 **Цель:** изучение основ разработки на языке Javascript/Typescript.
 
