@@ -6,9 +6,11 @@
 
 ## Задачи
 
-- Пройти интерактивный курс microsoft “Веб-разработка для начинающих”;
-- Пройти интерактивный курс microsoft “Создание приложений JavaScript с помощью Node.js”;
-- Пройти интерактивный курс microsoft “Создание приложений JavaScript с помощью TypeScript”.
+- Пройти интерактивный курс microsoft ["Веб-разработка для начинающих"](https://learn.microsoft.com/ru-ru/training/paths/web-development-101/);
+- Пройти интерактивный курс microsoft
+[“Создание приложений JavaScript с помощью Node.js”](https://learn.microsoft.com/ru-ru/training/paths/build-javascript-applications-nodejs/);
+- Пройти интерактивный курс microsoft
+["Создание приложений JavaScript с помощью TypeScript"](https://learn.microsoft.com/ru-ru/training/paths/build-javascript-applications-typescript/).
 
 ## Ход работы
 
