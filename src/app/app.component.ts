@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeroesComponent } from './heroes/heroes.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MessageComponent } from './message/message.component';
 
 
@@ -9,7 +9,7 @@ import { MessageComponent } from './message/message.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone: true,
-  imports: [HeroesComponent, RouterOutlet, MessageComponent]
+  imports: [HeroesComponent, RouterOutlet, MessageComponent, RouterModule]
 })
 export class AppComponent {
   title = 'Tour of Heroes';
