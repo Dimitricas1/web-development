@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 
 @Component({
@@ -14,10 +14,10 @@ import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 })
 export class HeroesComponent implements OnInit {
 
-  constructor(){}
+  constructor(private heroService: HeroService){}
 
   ngOnInit(): void {
-    
+    this.getHeroes();
   }
   selectedHero: Hero;
 
@@ -25,6 +25,10 @@ export class HeroesComponent implements OnInit {
     this.selectedHero=hero;
   }
 
-  heroes = HEROES;
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
+  }
+  heroes: Hero[];
 
 }
