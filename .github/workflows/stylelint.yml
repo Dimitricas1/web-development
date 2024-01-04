@@ -20,5 +20,5 @@ jobs:
       uses: actions/setup-node@v4.0.1
     - name: Run Stylelint
       run: |
-        npm -i -g stylelint-config-standard
+        npm -i stylelint-config-standard -g
         npx stylelint "src/**/*.css"
