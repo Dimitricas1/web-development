@@ -3,7 +3,7 @@ name: Css Stylelint
 on:
   push:
     paths:
-    - "/src**/*.css"
+    - "/src/**/*.css"
     - ".stylelintrc.json"
   pull_request:
     paths:
@@ -21,4 +21,4 @@ jobs:
     - name: Run Stylelint
       run: |
         npm -i -g stylelint-config-standard
-        npx stylelint "/src/**/*.css"
+        npx stylelint "./src/**/*.css"
