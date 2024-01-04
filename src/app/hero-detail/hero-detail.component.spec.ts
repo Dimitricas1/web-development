@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeroDetailComponent } from './hero-detail.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
@@ -8,7 +10,7 @@ describe('HeroDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroDetailComponent]
+      imports: [HeroDetailComponent, RouterModule.forRoot([]), HttpClientModule]
     })
       .compileComponents();
     
