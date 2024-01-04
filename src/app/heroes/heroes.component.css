@@ -57,3 +57,7 @@
     background-color: gray !important;
     color: white;
   }
+
+  #add {
+    margin-left: 5px;
+  }
