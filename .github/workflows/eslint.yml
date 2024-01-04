@@ -8,6 +8,7 @@
 # and https://eslint.org
 
 name: ESLint
+run-name: Running ESLint
 
 on:
   push:
