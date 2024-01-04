@@ -11,10 +11,10 @@ name: ESLint
 
 on:
   push:
-    branches: [ "main", "lab2-heroes" ]
+    branches: [ "lab2-heroes" ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main", "lab2-heroes" ]
+    branches: [ "lab2-heroes" ]
   workflow_dispatch:
 
 jobs:
