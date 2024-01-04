@@ -1,4 +1,5 @@
 name: Markdownlint
+run-name: Run Markdownlint
 
 on:
   push:
