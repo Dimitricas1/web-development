@@ -1,1 +1,9 @@
-<p>coin works!</p>
+<div *ngIf="!currency"><h1>Загрузка</h1></div>
+
+<div *ngIf="currency">
+<h1>{{currency.name}}</h1><br />
+<div class="data-logo">
+<div class="logo"><img src="{{currency.logo}}" alt="{{currency.name}}"></div>
+<div class="description">{{currency.description}}</div>
+<div>{{currency.symbol}}</div>
+</div>

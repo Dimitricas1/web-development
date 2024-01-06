@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Coin } from '../coin';
-import { Observable } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
 
-const url='https://api.coinpaprika.com/v1/global';
+
+const url='https://api.coinpaprika.com/v1';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetcoinsService {
 
-  constructor(private http: HttpClient) { }
+  http = inject(HttpClient);
+
+  constructor() { }
   
+  response: any;
 
-  getCoinById(id: string): Observable<Coin> {
-    return this.http.get<Coin>(`${url}/coins/${id}`);
+  getCoinById(id: string) {
+    return this.http.get(`${url}/coins/${id}`);
   }
-
 }
