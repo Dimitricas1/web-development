@@ -1,10 +1,12 @@
-<h1 align=center>Дисциплина "Веб-программирование"</h1>
+# Лабораторная работа №2
 
-[![Markdownlint](https://github.com/Dimitricas1/web-development/actions/workflows/markdownlint.yml/badge.svg?branch=main)](https://github.com/Dimitricas1/web-development/actions/workflows/markdownlint.yml)
-[![wakatime](https://wakatime.com/badge/github/Dimitricas1/web-development.svg)](https://wakatime.com/badge/github/Dimitricas1/web-development)
+TODO: Добавить бейджи
 
-<h2 align=center>Студент группы ИТб-5301-02-20 Червоткин Д.А.</h2>
+## Индивидуальное задание
 
-## Отчёты по выполненным работам
+### Вариант №6
 
-[Работа №1](/Reports/Work1.md)
+Приложение, реализующее API сервиса:  
+[https://coinpaprika.com/](https://coinpaprika.com/)
+
+TODO: Добавить ссылку на развёрнутое приложение
