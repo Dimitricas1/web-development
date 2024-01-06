@@ -1,2 +1,5 @@
-<div class="placeholder"><app-coin [id]="'btc-bitcoin'"></app-coin></div>
-<div class="placeholder"><app-coin [id]="'eth-ethereum'"></app-coin></div>
+<cdk-virtual-scroll-viewport appendOnly itemSize="350">
+    <div *cdkVirtualFor="let currency of currencies" class="placeholder">
+        <app-coin [id]="currency"></app-coin>
+    </div>
+</cdk-virtual-scroll-viewport>
