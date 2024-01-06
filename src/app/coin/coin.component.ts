@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GetcoinsService } from '../services/getcoins.service';
 
 @Component({
   selector: 'app-coin',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
   templateUrl: './coin.component.html',
   styleUrl: './coin.component.css'
 })
-export class CoinComponent {
+export class CoinComponent implements OnInit {
+  constructor(private getCoinsService: GetcoinsService){}
 
+  ngOnInit(): void {
+    this.getCoinById(id);
+  }
+
+  getCoinById(id: string):void{
+    this.getCoinsService.getCoinById(id).subscribe();
+  }
 }
