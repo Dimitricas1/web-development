@@ -1,4 +1,6 @@
-<cdk-virtual-scroll-viewport appendOnly itemSize="350">
+<cdk-virtual-scroll-viewport appendOnly itemSize="200">
+    <div class="header"><h1>Данные сервиса Coinpaprika</h1></div>
+    <mat-divider></mat-divider>
     <div *cdkVirtualFor="let currency of currencies" class="placeholder">
         <app-coin [id]="currency"></app-coin>
     </div>

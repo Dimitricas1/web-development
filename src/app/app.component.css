@@ -1,4 +1,4 @@
-.placeholder {
+/* .placeholder {
     border-radius: 4px;
     width: 70%;
     align-self: center;
@@ -7,9 +7,20 @@
     box-shadow: 15px 15px 5px black;
     padding: 10px;
     height: 350px;
-}
+} */
 
 .cdk-virtual-scroll-viewport {
     box-sizing: border-box;
     height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 5;
+}
+
+.placeholder {
+    margin: 20px auto;
+    align-self: center;
+    max-width: 600px;
 }

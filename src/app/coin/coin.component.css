@@ -3,8 +3,6 @@
 }
 
 .description {
-    display: inline-block;
-    font-size: 1.5em;
     text-align: justify;
     margin: 10px;
 }

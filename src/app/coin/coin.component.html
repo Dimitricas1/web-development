@@ -1,4 +1,4 @@
-<div *ngIf="!currency"><h1>Загрузка</h1></div>
+<!-- <div *ngIf="!currency"><h1>Загрузка</h1></div>
 
 <div *ngIf="currency">
 <h1>{{currency.name}}</h1><br />
@@ -6,4 +6,15 @@
 <div class="logo"><img src="{{currency.logo}}" alt="{{currency.name}}"></div>
 <div class="description">{{currency.description}}</div>
 <div>{{currency.symbol}}</div>
-</div>
+</div> -->
+<mat-spinner *ngIf="!currency"></mat-spinner>
+<mat-card class="currency-card" *ngIf="currency">
+    <mat-card-header>
+        <div mat-card-avatar style="background-size: cover; background-image: url({{currency.logo}});"></div>
+        <mat-card-title>{{currency.name}}</mat-card-title>
+        <mat-card-subtitle>{{currency.symbol}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="description">
+        {{currency.description}}
+    </mat-card-content>
+</mat-card>

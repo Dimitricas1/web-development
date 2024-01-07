@@ -1,12 +1,14 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { GetcoinsService } from '../services/getcoins.service';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-coin',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule, MatCardModule, MatProgressSpinnerModule ],
   templateUrl: './coin.component.html',
   styleUrl: './coin.component.css'
 })
