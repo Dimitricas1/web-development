@@ -2,6 +2,6 @@
     <div class="header"><h1>Данные сервиса Coinpaprika</h1></div>
     <mat-divider></mat-divider>
     <div *cdkVirtualFor="let currency of currencies" class="placeholder">
-        <app-coin [id]="currency"></app-coin>
+        <app-coin [id]="currency.id"></app-coin>
     </div>
 </cdk-virtual-scroll-viewport>
