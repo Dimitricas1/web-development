@@ -24,3 +24,7 @@ h1 {
     align-self: center;
     max-width: 600px;
 }
+
+.placeholder-child {
+    display: block;
+}

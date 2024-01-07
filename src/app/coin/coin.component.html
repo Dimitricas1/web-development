@@ -10,9 +10,9 @@
 <mat-spinner *ngIf="!currency"></mat-spinner>
 <mat-card class="currency-card" *ngIf="currency">
     <mat-card-header>
-        <div mat-card-avatar style="background-size: cover; background-image: url({{currency.logo}});"></div>
-        <mat-card-title>{{currency.name}}</mat-card-title>
-        <mat-card-subtitle>{{currency.symbol}}</mat-card-subtitle>
+        <div mat-card-avatar style="background-size: cover; background-image: url({{currency.thumbnail}});"></div>
+        <mat-card-title>{{currency.title}}</mat-card-title>
+        <mat-card-subtitle>{{currency.brand}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="description">
         {{currency.description}}
