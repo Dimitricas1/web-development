@@ -5,8 +5,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [importProvidersFrom([
-        HttpClient,
-        ScrollingModule
-    ]),
-    provideHttpClient(), provideAnimations()]
+    HttpClient,
+    ScrollingModule
+  ]),
+  provideHttpClient(), provideAnimations()]
 };

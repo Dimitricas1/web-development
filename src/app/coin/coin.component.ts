@@ -22,6 +22,7 @@ export class CoinComponent implements OnInit {
   @Input() id!: string;
 
   currency: any;
+  course: any;
 
 
   constructor(public dialog:MatDialog){}
@@ -31,17 +32,26 @@ export class CoinComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoinById();
-    console.log('Fetching');
+    this.getExchangeCourseById();
   }
 
   getCoinById(){
-    this.coins.getCoinById(this.id).subscribe({next: currency => {this.currency = currency;
-      console.log(currency);},
-    error: error => {statusCode.next(error.status);
-      statusCode.complete();
-      console.log(error.status);
-    }
+    this.coins.getCoinById(this.id).subscribe({next: currency => {this.currency = currency;},
+      error: error => {statusCode.next(error.status);
+        statusCode.complete();
+      }
     });
+  }
+
+  getExchangeCourseById(){
+    this.coins.getExchangeCourseByBaseCurrency('btc-bitcoin').subscribe({next: course => {
+      this.course = course;
+      console.log(course);
+    },
+    error: error => {
+      statusCode.next(error.status);
+      statusCode.complete();
+    }});
   }
 
   openErrorDialog(errorCode: number){
