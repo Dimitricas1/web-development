@@ -1,7 +1,13 @@
 <cdk-virtual-scroll-viewport appendOnly itemSize="130">
-    <div class="header"><h1>Данные сервиса Coinpaprika</h1></div>
+    <!-- <div class="header"><h1>Данные сервиса Coinpaprika</h1></div> -->
+    <mat-toolbar color="primary">
+        <h1><span style="color: white;">Данные сервиса Coinpaprika</span></h1>
+    </mat-toolbar>
     <mat-divider></mat-divider>
-    <div *cdkVirtualFor="let currency of currencies" class="placeholder">
-        <app-coin [id]="currency.id" class="placeholder-child"></app-coin>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="currencies === ''"></mat-progress-bar>
+    <div *ngIf="currencies !== ''">
+        <div *cdkVirtualFor="let currency of currencies" class="placeholder">
+            <app-coin [id]="currency.id" class="placeholder-child"></app-coin>
+        </div>
     </div>
 </cdk-virtual-scroll-viewport>

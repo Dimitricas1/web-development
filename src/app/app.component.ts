@@ -10,18 +10,20 @@ import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialo
 import { MatButtonModule } from '@angular/material/button';
 import { errorDescriptions } from './errorDescriptions';
 import { BehaviorSubject } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, CoinComponent, ScrollingModule, MatDividerModule, MatProgressSpinnerModule, MatButtonModule],
+  imports: [CommonModule, CoinComponent, ScrollingModule, MatDividerModule, MatProgressSpinnerModule, MatButtonModule, MatToolbarModule, MatProgressBarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [HttpClientModule, ScrollingModule]
 })
 export class AppComponent implements OnInit {
   title = 'coinpaprika';
-  currencies: any;
+  currencies: any = '';
   constructor(public dialog: MatDialog){}
   coins = inject(GetcoinsService);
 
@@ -35,8 +37,6 @@ export class AppComponent implements OnInit {
     this.coins.getListCoins().subscribe({next: data => this.currencies = data,
       error: error => {statusCode.next(error.status);
         statusCode.complete();
-        console.log(error.status);
-        this.openErrorDialog(error.status);
       }
     });
   }
@@ -44,11 +44,17 @@ export class AppComponent implements OnInit {
   openErrorDialog(errorCode: number){
     let errorTextValue = 'Неизвестная ошибка';
     if (errorDescriptions[errorCode]) errorTextValue = errorDescriptions[errorCode];
+    let isEmptyList: boolean = false;
+    if (this.currencies === '') isEmptyList = true;
     this.dialog.open(HttpErrorDialog, {
       data: {
         errorCode: errorCode,
-        errorText: errorTextValue
-      }
+        errorText: errorTextValue,
+        isEmptyList: isEmptyList
+      },
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration: '700ms',
+      disableClose: isEmptyList
     });
   }
 }

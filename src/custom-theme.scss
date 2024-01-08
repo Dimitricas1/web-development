@@ -22,7 +22,7 @@ $coinpaprika-warn: mat.define-palette(mat.$red-palette);
 // theming systems such as "color" or "typography".
 $coinpaprika-theme: mat.define-light-theme((
   color: (
-    primary: $coinpaprika-primary,
+    primary: mat.define-palette(mat.$blue-palette),
     accent: $coinpaprika-accent,
     warn: $coinpaprika-warn,
   )
@@ -31,7 +31,7 @@ $coinpaprika-theme: mat.define-light-theme((
 $coinpaprika-theme: mat.define-dark-theme((
   color: (
     primary: $coinpaprika-primary,
-    accent: $coinpaprika-accent,
+    accent: mat.define-palette(mat.$orange-palette),
     warn: $coinpaprika-warn,
   )
 ));

@@ -35,11 +35,12 @@ export class CoinComponent implements OnInit {
   }
 
   getCoinById(){
-    this.coins.getCoinById(this.id).subscribe({next: currency => this.currency = currency,
-      error: error => {statusCode.next(error.status);
-        statusCode.complete();
-        console.log(error.status);
-      }
+    this.coins.getCoinById(this.id).subscribe({next: currency => {this.currency = currency;
+      console.log(currency);},
+    error: error => {statusCode.next(error.status);
+      statusCode.complete();
+      console.log(error.status);
+    }
     });
   }
 
