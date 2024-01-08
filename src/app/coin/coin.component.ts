@@ -1,14 +1,18 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, Inject } from '@angular/core';
 import { GetcoinsService } from '../services/getcoins.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { errorDescriptions } from '../errorDescriptions';
+import { statusCode } from '../app.component';
 
 
 @Component({
   selector: 'app-coin',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatProgressSpinnerModule ],
+  imports: [ CommonModule, MatCardModule, MatProgressSpinnerModule, MatButtonModule ],
   templateUrl: './coin.component.html',
   styleUrl: './coin.component.css'
 })
@@ -19,16 +23,45 @@ export class CoinComponent implements OnInit {
 
   currency: any;
 
-  constructor(){}
+
+  constructor(public dialog:MatDialog){}
+  
 
   coins=inject(GetcoinsService);
 
   ngOnInit(): void {
-    this.getCoinById(this.id);
+    this.getCoinById();
     console.log('Fetching');
   }
 
-  getCoinById(id: string){
-    this.coins.getCoinById(id).subscribe(currency => this.currency = currency);
+  getCoinById(){
+    this.coins.getCoinById(this.id).subscribe({next: currency => this.currency = currency,
+      error: error => {statusCode.next(error.status);
+        statusCode.complete();
+        console.log(error.status);
+      }
+    });
   }
+
+  openErrorDialog(errorCode: number){
+    let errorTextValue = 'Неизвестная ошибка';
+    if (errorDescriptions[errorCode]) errorTextValue = errorDescriptions[errorCode];
+    this.dialog.open(HttpErrorDialog, {
+      data: {
+        errorCode: errorCode,
+        errorText: errorTextValue
+      }
+    });
+  }
+}
+
+
+@Component({
+  selector: 'http-error-dialog',
+  templateUrl: '../http-error-dialog.html',
+  standalone: true,
+  imports: [MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MatButtonModule]
+})
+export class HttpErrorDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
 }

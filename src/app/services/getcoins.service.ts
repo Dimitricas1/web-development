@@ -22,6 +22,6 @@ export class GetcoinsService {
   }
 
   getListCoins(){
-    return this.http.get<any>(`${url}/http/402`).pipe(map(response => response.products));
+    return this.http.get<any>(`${url}/products`).pipe(map(response => response.products));
   }
 }

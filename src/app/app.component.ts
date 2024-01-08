@@ -8,6 +8,8 @@ import { GetcoinsService } from './services/getcoins.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { errorDescriptions } from './errorDescriptions';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,26 +22,28 @@ import { MatButtonModule } from '@angular/material/button';
 export class AppComponent implements OnInit {
   title = 'coinpaprika';
   currencies: any;
-  statusCode: number = 200;
   constructor(public dialog: MatDialog){}
   coins = inject(GetcoinsService);
 
   ngOnInit(): void {
     this.getListCoins();
+    errorListener = statusCode.subscribe(errorCode => {if (errorCode !== 200) this.openErrorDialog(errorCode);});
   }
+
 
   getListCoins(){
     this.coins.getListCoins().subscribe({next: data => this.currencies = data,
-      error: error => {this.statusCode = error.status;
+      error: error => {statusCode.next(error.status);
+        statusCode.complete();
         console.log(error.status);
-        if (error.status !== 200) this.openErrorDialog(error.status);
+        this.openErrorDialog(error.status);
       }
     });
   }
 
   openErrorDialog(errorCode: number){
     let errorTextValue = 'Неизвестная ошибка';
-    if (errorDescription[errorCode]) errorTextValue = errorDescription[errorCode];
+    if (errorDescriptions[errorCode]) errorTextValue = errorDescriptions[errorCode];
     this.dialog.open(HttpErrorDialog, {
       data: {
         errorCode: errorCode,
@@ -49,13 +53,8 @@ export class AppComponent implements OnInit {
   }
 }
 
-export interface ErrorDescription {
-  [code: number]: string;
-}
-const errorDescription:ErrorDescription = {
-  402: 'Сервер сообщил о превышении лимита запросов',
-  404: 'Данные не обнаружены на сервере'
-};
+export const statusCode = new BehaviorSubject(200);
+export let errorListener: any;
 
 @Component({
   selector: 'http-error-dialog',
