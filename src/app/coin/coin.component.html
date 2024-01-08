@@ -12,9 +12,14 @@
     <mat-card-header>
         <div mat-card-avatar style="background-size: cover; background-image: url({{currency.logo}});"></div>
         <mat-card-title>{{currency.name}}</mat-card-title>
-        <mat-card-subtitle>{{currency.symbol}}</mat-card-subtitle>
+        <mat-card-subtitle>1 {{currency.symbol}} = {{course.price | currency}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="description">
-        {{currency.description}}
+        @if (currency.description !== ''){
+            <div>{{currency.description}}</div>
+        } @else {
+            <div style="color: gray;">Сервис не предоставил описание.</div>
+        }
+        <div style="margin-top: 10px;">Больше информации: <a href="{{currency.links.website[0]}}" style="color: gray;">{{currency.links.website[0]}}</a></div>
     </mat-card-content>
 </mat-card>

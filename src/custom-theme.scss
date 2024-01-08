@@ -31,7 +31,7 @@ $coinpaprika-theme: mat.define-light-theme((
 $coinpaprika-theme: mat.define-dark-theme((
   color: (
     primary: $coinpaprika-primary,
-    accent: mat.define-palette(mat.$orange-palette),
+    accent: $coinpaprika-accent,
     warn: $coinpaprika-warn,
   )
 ));
@@ -41,4 +41,3 @@ $coinpaprika-theme: mat.define-dark-theme((
 // that you are using.
 
 @include mat.all-component-themes($coinpaprika-theme);
-

@@ -1,18 +1,20 @@
 import { Component, inject, Input, OnInit, Inject } from '@angular/core';
 import { GetcoinsService } from '../services/getcoins.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { errorDescriptions } from '../errorDescriptions';
 import { statusCode } from '../app.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-coin',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatProgressSpinnerModule, MatButtonModule ],
+  imports: [ CommonModule, MatCardModule, MatProgressSpinnerModule, MatButtonModule, MatDividerModule, CurrencyPipe ],
   templateUrl: './coin.component.html',
   styleUrl: './coin.component.css'
 })
@@ -36,26 +38,30 @@ export class CoinComponent implements OnInit {
   }
 
   getCoinById(){
-    this.coins.getCoinById(this.id).subscribe({next: currency => {this.currency = currency;},
-      error: error => {statusCode.next(error.status);
-        statusCode.complete();
-      }
-    });
+    this.coins.getCoinById(this.id).subscribe({next: currency => {this.currency = currency.body;
+      statusCode.next(currency.status);
+      if (currency.status !== 200) {statusCode.complete();}},
+    error: (error:HttpErrorResponse) => {
+      statusCode.next(error.status);
+      statusCode.complete();
+    }}
+    );
   }
 
   getExchangeCourseById(){
-    this.coins.getExchangeCourseByBaseCurrency('btc-bitcoin').subscribe({next: course => {
-      this.course = course;
-      console.log(course);
+    this.coins.getExchangeCourseByBaseCurrency(this.id).subscribe({next: course => {
+      this.course = course.body;
+      statusCode.next(course.status);
+      if (course.status !== 200) {statusCode.complete();}
     },
-    error: error => {
+    error: (error:HttpErrorResponse) => {
       statusCode.next(error.status);
       statusCode.complete();
     }});
   }
 
   openErrorDialog(errorCode: number){
-    let errorTextValue = 'Неизвестная ошибка';
+    let errorTextValue = 'Произошла ошибка';
     if (errorDescriptions[errorCode]) errorTextValue = errorDescriptions[errorCode];
     this.dialog.open(HttpErrorDialog, {
       data: {

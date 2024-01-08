@@ -4,7 +4,7 @@
         <h1><span style="color: white;">Данные сервиса Coinpaprika</span></h1>
     </mat-toolbar>
     <mat-divider></mat-divider>
-    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="currencies === ''"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="primary" *ngIf="currencies === ''"></mat-progress-bar>
     <div *ngIf="currencies !== ''">
         <div *cdkVirtualFor="let currency of currencies" class="placeholder">
             <app-coin [id]="currency.id" class="placeholder-child"></app-coin>

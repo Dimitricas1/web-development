@@ -1,7 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoinComponent } from './coin/coin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
 import { GetcoinsService } from './services/getcoins.service';
@@ -32,17 +32,22 @@ export class AppComponent implements OnInit {
     errorListener = statusCode.subscribe(errorCode => {if (errorCode !== 200) this.openErrorDialog(errorCode);});
   }
 
-
   getListCoins(){
-    this.coins.getListCoins().subscribe({next: data => this.currencies = data,
-      error: error => {statusCode.next(error.status);
-        statusCode.complete();
-      }
-    });
+    this.coins.getListCoins().subscribe({next: data => {this.currencies = data.body;
+      statusCode.next(data.status);
+      console.log(data.body);
+      if(data.status !== 200) statusCode.complete();},
+    error: (error:HttpErrorResponse) => {
+      //if(error.type.toString()==='payment_required') {statusCode.next(402);}
+      statusCode.next(error.status);
+      statusCode.complete();
+      console.log(error);
+    }});
   }
 
   openErrorDialog(errorCode: number){
-    let errorTextValue = 'Неизвестная ошибка';
+    let errorTextValue = 'Произошла ошибка. Возможно, превышен лимит запросов.';
+    console.log(errorCode);
     if (errorDescriptions[errorCode]) errorTextValue = errorDescriptions[errorCode];
     let isEmptyList: boolean = false;
     if (this.currencies === '') isEmptyList = true;
