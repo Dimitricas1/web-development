@@ -74,7 +74,7 @@ export class CoinComponent implements OnInit {
 
 
 @Component({
-  selector: 'http-error-dialog',
+  selector: 'http-error-dialog:not(p)',
   templateUrl: '../http-error-dialog.html',
   standalone: true,
   imports: [MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MatButtonModule]

@@ -35,13 +35,11 @@ export class AppComponent implements OnInit {
   getListCoins(){
     this.coins.getListCoins().subscribe({next: data => {this.currencies = data.body;
       statusCode.next(data.status);
-      console.log(data.body);
       if(data.status !== 200) statusCode.complete();},
     error: (error:HttpErrorResponse) => {
       //if(error.type.toString()==='payment_required') {statusCode.next(402);}
       statusCode.next(error.status);
       statusCode.complete();
-      console.log(error);
     }});
   }
 
