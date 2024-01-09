@@ -9,4 +9,5 @@ TODO: Добавить бейджи
 Приложение, реализующее API сервиса:  
 [https://coinpaprika.com/](https://coinpaprika.com/)
 
-TODO: Добавить ссылку на развёрнутое приложение
+Ссылка на развёрнутое приложение:  
+[https://coinpaprika-angular.web.app](https://coinpaprika-angular.web.app)
